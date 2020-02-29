@@ -1,0 +1,14 @@
+version: '3'
+services:
+  fluent:
+    network_mode: host
+    build: 
+      context: ./fluent-netflow/
+      args:
+        dd_api_key: ${DD_API_KEY}
+    ports:
+    - "4729:4729"
+    - "4729:4729/udp"
+  netflow5:
+    network_mode: host
+    build: ./netflow5-gen/
